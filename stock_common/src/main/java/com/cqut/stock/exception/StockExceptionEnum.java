@@ -8,6 +8,7 @@ public enum StockExceptionEnum {
 
     /*大盘板块*/
     NO_STOCK_BLOCK_RESPONSE_DATA(20001,"此刻没有大盘板块数据"),
+    NO_STOCK_RT_INFO_RESPONSE_DATA(20002,"没有更多的涨幅榜数据"),
     SYSTEM_ERROR(55555555,"系统异常");
 
     Integer code;

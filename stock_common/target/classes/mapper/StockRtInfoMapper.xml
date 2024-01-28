@@ -127,4 +127,21 @@
             cur_time =  #{curTime,jdbcType=TIMESTAMP}
         where   id = #{id,jdbcType=BIGINT} 
     </update>
+
+    <select id="getNewestStockInfo" resultType="com.cqut.stock.pojo.domain.StockUpdownDomain">
+        select
+            sri.trade_amount as tradeAmt,
+            sri.pre_close_price as preClosePrice,
+            (sri.max_price-sri.min_price)/sri.pre_close_price as amplitude,
+            sri.stock_code as code,
+            sri.stock_name as  name,
+            sri.cur_time as curDate,
+            sri.trade_volume as tradeVol,
+            sri.cur_price-sri.pre_close_price as increase,
+            (sri.cur_price-sri.pre_close_price) /pre_close_price as upDown,
+            sri.cur_price as tradePrice
+        from stock_rt_info as   sri
+        where sri.cur_time=#{timePoint}
+        order by upDown desc
+    </select>
 </mapper>

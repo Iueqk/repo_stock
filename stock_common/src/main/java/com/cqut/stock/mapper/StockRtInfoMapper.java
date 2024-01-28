@@ -1,6 +1,11 @@
 package com.cqut.stock.mapper;
 
+import com.cqut.stock.pojo.domain.StockUpdownDomain;
 import com.cqut.stock.pojo.entity.StockRtInfo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
 
 /**
 * @author WSH4950
@@ -21,5 +26,12 @@ public interface StockRtInfoMapper {
     int updateByPrimaryKeySelective(StockRtInfo record);
 
     int updateByPrimaryKey(StockRtInfo record);
+
+    /**
+     * 查询指定时间点下股票的数据，并按照涨幅降序排序
+     * @param curDate
+     * @return
+     */
+    List<StockUpdownDomain> getNewestStockInfo(@Param("timePoint") Date curDate);
 
 }
